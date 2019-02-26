@@ -42,7 +42,7 @@ $(function () {
         }, 900);
         
         setTimeout(function () {
-            //$('.slider').toggleClass('zoom');
+            $('.slider').toggleClass('zoom');
         }, 1900);
     }
 });

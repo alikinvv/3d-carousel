@@ -24,6 +24,9 @@ body {
   height: 100% !important;
 	position: relative;
   perspective: 1000px;
+  max-height: 100%;
+  max-width: 100%;
+  will-change: transform;
 
   &:not(.zoom) {
     .item {
@@ -33,12 +36,24 @@ body {
       &.active {
         width: 100% !important;
         height: 100% !important;
+        line-height: 100%;
         position: relative;
         display: flex;
         opacity: 1;
+        pointer-events: all;
 
         span {
           top: 0;
+          transform: scale(1);
+        }
+
+        .btn {
+          transform: scale(1);
+          height: 44px;
+
+          span {
+            top: 16px;
+          }
         }
       }
 
@@ -73,6 +88,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 }
 
 .item {
@@ -89,6 +105,8 @@ body {
   background-position: center;
   transition: all 900ms ease-in-out;
   transform-origin: center;
+  pointer-events: none;
+  will-change: transform;
   
   &.item1 {
     transform: rotateY(0deg) translateZ(500px);
@@ -122,6 +140,7 @@ body {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    will-change: transform;
   }
 
   &__year {
@@ -130,11 +149,16 @@ body {
     margin-bottom: 35px;
     overflow: hidden;
     line-height: 30px;
+    will-change: transform;
 
     span {
       position: relative;
       top: 27px;
-      transition: all 1s ease-in-out;
+      transition: all 900ms linear;
+      display: inline-block;
+      transform: scale(0.7);
+      white-space: nowrap;
+      will-change: transform;
     }
   }
 
@@ -144,11 +168,16 @@ body {
     margin-bottom: 62px;
     overflow: hidden;
     line-height: 55px;
+    will-change: transform;
 
     span {
       position: relative;
       top: 48px;
-      transition: all 1s ease-in-out;
+      transition: all 900ms ease-in-out;
+      display: inline-block;
+      transform: scale(0.7);
+      white-space: nowrap;
+      will-change: transform;
     }
   }
 }
@@ -156,8 +185,21 @@ body {
 .btn {
   background: #fff;
   color: #120d0b;
-  padding: 14px 33px;
+  padding: 0 33px;
   text-decoration: none;
+  display: inline-block;
+  transform: scale(0.7);
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 900ms ease-in-out;
+  will-change: transform;
+
+  span {
+    position: relative;
+    top: 16px;
+    will-change: transform;
+  }
 }
   
 .arrow {
@@ -169,6 +211,13 @@ body {
   border-radius: 50%;
   width: 70px;
   height: 70px;
+  transition: all .1s ease-in-out;
+  transform-origin: 50% 50%;
+  will-change: transform;
+
+  &:hover {
+    transform: translateY(-50%) scale(1.1)
+  }
 
   &.arrow-next {
     right: 5em;
@@ -183,3 +232,17 @@ body {
   }
 }
 
+@media (min-width: 1400px) {
+  .slider {
+    max-height: 700px;
+    max-width: 1500px;
+  }
+
+  .arrow-next {
+    right: -110px !important;
+  }
+
+  .arrow-prev {
+    left: -110px !important;
+  }
+}
