@@ -6,4 +6,6 @@
 
 ## [Live Demo](https://alikinvv.github.io/3d-carousel/build)
 
+![search interaction](/src/img/gif.gif?raw=true)
+
 [![Analytics](https://ga-beacon.appspot.com/UA-31485994-5/3d-carousel-repo)](https://github.com/alikinvv/3d-carousel)
