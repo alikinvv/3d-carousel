@@ -1,48 +1,50 @@
-$(function () {
-    var wrapper = $('.wrapper');
-    var currdeg  = 0;
-    var active = 0;
+let slider = document.querySelector('.slider');
+let wrapper = document.querySelector('.wrapper');
+let next = document.querySelector('.arrow-next');
+let prev = document.querySelector('.arrow-prev');
+let item = document.querySelectorAll('.item');
+let currdeg  = 0;
+let active = 0;
 
-    $('.arrow-next').on('click', { direction: 'next' }, rotate);
-    $('.arrow-prev').on('click', { direction: 'prev' }, rotate);
+next.addEventListener('click', () => {
+    slider.classList.toggle('zoom');
 
-    function rotate(e) {
-        $('.slider').toggleClass('zoom');
+    currdeg = currdeg - 120;
 
-        if (e.data.direction == 'next') {            
-            currdeg = currdeg - 120;
-
-            if (active === $('.item').length - 1) {
-                active = 0;
-            } else {
-                active++;
-            }
-        }
-
-        if (e.data.direction == 'prev') {
-            currdeg = currdeg + 120;
-            
-            if (active === 0) {
-                active = $('.item').length - 1;
-            } else {
-                active--;
-            }
-        }
-
-        setTimeout(function () {
-            $('.item').removeClass('active');
-            $('.item').eq(active).addClass('active');
-
-            wrapper.css({
-                "-webkit-transform": "rotateY("+currdeg+"deg)",
-                "-moz-transform": "rotateY("+currdeg+"deg)",
-                "-o-transform": "rotateY("+currdeg+"deg)",
-                "transform": "rotateY("+currdeg+"deg)"
-            });
-        }, 900);
-        
-        setTimeout(function () {
-            $('.slider').toggleClass('zoom');
-        }, 1900);
+    if (active === item.length - 1) {
+        active = 0;
+    } else {
+        active++;
     }
+
+    toggle();
 });
+
+prev.addEventListener('click', () => {
+    slider.classList.toggle('zoom');
+
+    currdeg = currdeg + 120;
+
+    if (active === 0) {
+        active = item.length - 1;
+    } else {
+        active--;
+    }
+
+    toggle();
+});
+
+let toggle = () => {
+    setTimeout(() => {
+        for (let i = 0; i < item.length; i++) {
+            item[i].classList.remove('active');
+        }
+
+        item[active].classList.add('active')
+        wrapper.style.transform = 'rotateY(' + currdeg + 'deg)';
+    }, 900);
+
+    setTimeout(() => {
+        slider.classList.toggle('zoom');
+    }, 1900);
+}
